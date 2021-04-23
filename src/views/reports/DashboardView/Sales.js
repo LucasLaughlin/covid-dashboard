@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
@@ -23,6 +24,23 @@ const useStyles = makeStyles(() => ({
 const Sales = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [sentiment, setSentiment] = useState();
+
+  useEffect(() => {
+    const getTestData = () => {
+      axios
+        .get('https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/coviddata/sentiment')
+        .then((response) => {
+          console.log(response);
+          setSentiment(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getTestData();
+    setSentiment(1);
+  }, sentiment);
 
   const data = {
     datasets: [
@@ -112,6 +130,7 @@ const Sales = ({ className, ...rest }) => {
         )}
         title="Latest Sales"
       />
+      {sentiment}
       <Divider />
       <CardContent>
         <Box

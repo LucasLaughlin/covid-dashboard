@@ -5,11 +5,13 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Budget from './Budget';
-import Sales from './Sales';
-import TasksProgress from './TasksProgress';
-import TotalCustomers from './TotalCustomers';
-import TotalProfit from './TotalProfit';
+// import Budget from './Budget';
+import Total from './Total';
+// import Line from './Line';
+// import Sales from './Sales';
+// import TasksProgress from './TasksProgress';
+// import TotalCustomers from './TotalCustomers';
+// import TotalProfit from './TotalProfit';
 import TrafficByDevice from './TrafficByDevice';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +43,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Budget />
+            <Total type="covid" />
           </Grid>
           <Grid
             item
@@ -50,7 +52,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalCustomers />
+            <Total type="vaccine" />
           </Grid>
           <Grid
             item
@@ -59,7 +61,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TasksProgress />
+            <Total type="mask" />
           </Grid>
           <Grid
             item
@@ -68,7 +70,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalProfit />
+            <Total type="Cases" />
           </Grid>
           <Grid
             item
@@ -77,7 +79,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <Sales />
+            {/* <Line title="Cases Over Time" /> */}
           </Grid>
           <Grid
             item

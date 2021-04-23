@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+/* import axios from 'axios'; */
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -34,6 +35,23 @@ const useStyles = makeStyles((theme) => ({
 
 const Budget = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [sentiment, setSentiment] = useState();
+
+  useEffect(() => {
+    /* const getTestData = () => {
+      axios
+        .get('https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/coviddata/sentiment')
+        .then((response) => {
+          console.log(response);
+          setSentiment(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getTestData(); */
+    setSentiment(true);
+  }, []);
 
   return (
     <Card
@@ -58,7 +76,7 @@ const Budget = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              $24,000
+              {sentiment}
             </Typography>
           </Grid>
           <Grid item>
