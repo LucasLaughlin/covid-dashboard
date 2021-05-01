@@ -1,19 +1,9 @@
-## Quick start
-
-- Make sure your NodeJS and npm versions are up to date for `React 16.8.6`
-
-- Install dependencies: `npm install` or `yarn`
-
-- Start the server: `npm run start` or `yarn start`
-
-- Views are on: `localhost:3000`
-
 ## Lambda
- - lambda/index.js contains our lambda function which are uploaded to AWS
+ - lambda.js contains our lambda function which are uploaded to AWS
 
-## React Material UI Kit
+## Dashboard 
 
-- We used Boilerplate for our dashboard found [here](https://material-ui.com?ref=devias-io)
+- The dashboard directory contains our dashboard component and subcomponents used to display our client side data. For the full working project see: 
 
 ## License
 
