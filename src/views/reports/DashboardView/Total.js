@@ -3,7 +3,6 @@ import axios from 'axios';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Card,
   CardContent,
   Grid,
@@ -11,8 +10,6 @@ import {
   colors,
   makeStyles
 } from '@material-ui/core';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import MoneyIcon from '@material-ui/icons/Money';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Total = ({
   className,
-  type,
+  label,
+  url,
+  subField,
   ...rest
 }) => {
   const classes = useStyles();
@@ -43,10 +42,10 @@ const Total = ({
   useEffect(() => {
     const getTestData = () => {
       axios
-        .get(`https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/dailyTotal/${type}`)
+        .get(`https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/${url}`)
         .then((response) => {
-          console.log(response);
-          setTotal(response.data);
+          console.log(JSON.parse(response.data));
+          setTotal(JSON.parse(response.data).Items[0][`${subField}`]);
         })
         .catch((error) => {
           console.log(error);
@@ -72,7 +71,7 @@ const Total = ({
               gutterBottom
               variant="h6"
             >
-              {type}
+              {label}
             </Typography>
             <Typography
               color="textPrimary"
@@ -80,11 +79,6 @@ const Total = ({
             >
               {total}
             </Typography>
-          </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <MoneyIcon />
-            </Avatar>
           </Grid>
         </Grid>
       </CardContent>
@@ -94,7 +88,10 @@ const Total = ({
 
 Total.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  label: PropTypes.string,
+  url: PropTypes.string,
+  subField: PropTypes.string
 };
 
 export default Total;

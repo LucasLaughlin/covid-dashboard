@@ -7,12 +7,14 @@ import {
 import Page from 'src/components/Page';
 // import Budget from './Budget';
 import Total from './Total';
+import Line from './Line';
 // import Line from './Line';
 // import Sales from './Sales';
 // import TasksProgress from './TasksProgress';
 // import TotalCustomers from './TotalCustomers';
 // import TotalProfit from './TotalProfit';
-import TrafficByDevice from './TrafficByDevice';
+// import TrafficByDevice from './TrafficByDevice';
+import SentimentBreakdown from './SentimentBreakdown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +45,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Total type="covid" />
+            <Total label="Number of COVID-19 Related Tweets Today" url="daily/tweets" subField="tweets_per_day" />
           </Grid>
           <Grid
             item
@@ -52,7 +54,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Total type="vaccine" />
+            <Total label="Number of Tweets Mentioning ''corona'' Today" url="/daily/covidTweets" subField="tweets_with_coronakw_per_day" />
           </Grid>
           <Grid
             item
@@ -61,7 +63,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Total type="mask" />
+            <Total label="Average COVID-19 Sentiment Today" url="/daily/sentiment" subField="avg_sentiment" />
           </Grid>
           <Grid
             item
@@ -70,7 +72,34 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Total type="Cases" />
+            <Total label="Total COVID-19 Cases To Date" url="/total/cases" subField="cases_cum" />
+          </Grid>
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <Total label="Total COVID-19 Deaths To Date" url="/total/deaths" subField="deaths_cum" />
+          </Grid>
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <Total label="New COVID-19 Cases Today" url="/daily/cases" subField="cases_day" />
+          </Grid>
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <Total label="New COVID-19 Deaths Today" url="/daily/deaths" subField="deaths_day" />
           </Grid>
           <Grid
             item
@@ -79,7 +108,7 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            {/* <Line title="Cases Over Time" /> */}
+            <Line title="COVID-19 Deaths per Day" />
           </Grid>
           <Grid
             item
@@ -88,7 +117,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TrafficByDevice />
+            <SentimentBreakdown />
           </Grid>
         </Grid>
       </Container>

@@ -1,11 +1,11 @@
-import React, { useEffect/* , useState */ } from 'react';
-// import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Bar } from 'react-chartjs-2';
+import { Line as LineGraph } from 'react-chartjs-2';
 import {
   Box,
-  Button,
+  /* Button, */
   Card,
   CardContent,
   CardHeader,
@@ -14,8 +14,8 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+// import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -28,25 +28,43 @@ const Line = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-  // const [data, setData] = useState();
+  const [data, setData] = useState({
+    datasets: [
+      {
+        backgroundColor: colors.indigo[500],
+        data: [],
+        label: 'This year'
+      },
+    ],
+    labels: []
+  });
 
   useEffect(() => {
-    /* const getTestData = () => {
+    const getTestData = () => {
       axios
-        .get('https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/coviddata/sentiment')
+        .get('https://had105rhf4.execute-api.us-west-2.amazonaws.com/test/total/casesbyday')
         .then((response) => {
-          console.log(response);
-          setData(response.data);
+          console.log('RESPONSE DATA', JSON.parse(response.data));
+          setData({
+            datasets: [
+              {
+                backgroundColor: colors.indigo[500],
+                data: JSON.parse(response.data).Items.slice(0).reverse()
+                  .map((item) => parseInt(item.cases_day, 10)),
+                label: 'New Covid Cases'
+              }
+            ],
+            labels: JSON.parse(response.data).Items.slice(0).reverse().map((item) => item.date, 10)
+          });
         })
         .catch((error) => {
           console.log(error);
         });
     };
     getTestData();
-    setData(1); */
-  }/* , data */);
+  }, []);
 
-  const data = {
+  /*   const data = {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
@@ -60,7 +78,7 @@ const Line = ({
       }
     ],
     labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
-  };
+  }; */
 
   const options = {
     animation: false,
@@ -123,7 +141,7 @@ const Line = ({
       {...rest}
     >
       <CardHeader
-        action={(
+        /* action={(
           <Button
             endIcon={<ArrowDropDownIcon />}
             size="small"
@@ -131,24 +149,23 @@ const Line = ({
           >
             Last 7 days
           </Button>
-        )}
+        )} */
         title={title}
       />
-      {data}
       <Divider />
       <CardContent>
         <Box
           height={400}
           position="relative"
         >
-          <Bar
+          <LineGraph
             data={data}
             options={options}
           />
         </Box>
       </CardContent>
       <Divider />
-      <Box
+      {/* <Box
         display="flex"
         justifyContent="flex-end"
         p={2}
@@ -161,7 +178,7 @@ const Line = ({
         >
           Overview
         </Button>
-      </Box>
+      </Box> */}
     </Card>
   );
 };
