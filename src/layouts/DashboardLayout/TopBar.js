@@ -40,7 +40,7 @@ const TopBar = ({
           <Box display="flex" flexDirection="row">
             <PublicIcon className={classes.heading} />
             <Typography className={classes.heading} variant="h4">
-              We solved Covid with a dashboard
+              COVID-19 Twitter Tracker
             </Typography>
           </Box>
         </RouterLink>

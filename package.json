@@ -4,14 +4,14 @@
   "licence": "MIT",
   "version": "1.0.0",
   "private": false,
-  "homepage": "https://github.com/LucasLaughlin/covid-dashboard",
+  "homepage": "https://lucaslaughlin.github.io/covid-dashboard",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "CovidDashboard -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

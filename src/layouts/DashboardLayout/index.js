@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import TopBar from './TopBar';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const DashboardLayout = () => {
+const DashboardLayoutPropTypes = {
+  children: PropTypes.element
+};
+
+const DashboardLayout = ({ children }) => {
   const classes = useStyles();
 
   return (
@@ -38,12 +42,13 @@ const DashboardLayout = () => {
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
-            <Outlet />
+            {children}
           </div>
         </div>
       </div>
     </div>
   );
 };
+DashboardLayout.propTypes = DashboardLayoutPropTypes;
 
 export default DashboardLayout;
