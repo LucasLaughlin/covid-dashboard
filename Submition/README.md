@@ -3,13 +3,6 @@
 
 ## Dashboard 
 
-- The dashboard directory contains our dashboard component and subcomponents used to display our client side data. For the full working project see: 
+- The dashboard directory contains our dashboard component and subcomponents used to display our client side data. For the full working project see: https://github.com/LucasLaughlin/covid-dashboard
 
-## License
-
-- The boiler plate is licensed under MIT (https://github.com/devias-io/react-material-dashboard/blob/master/LICENSE.md)
-
-## Contact Boilder plate authors
-
-- Email: contact@devias.io
-- [Follow on Instagram](https://www.instagram.com/deviasio/)
+## Stream Simulation
